@@ -361,7 +361,7 @@ with st.expander("Dataset"):
     st.write("The data has been provided by NASA and is available [here](%s)" % url)
     st.write("This project uses only one of the four available datasets")
     st.write("Software stack: pandas, numpy, plotly, sklearn, XGBoost, Optuna")
-    st.ewrite("Final notebook available here: %s"%(notebook_repo))
+    st.write("Final notebook available here: %s"%(notebook_repo))
 st.subheader("Final RUL predictions and comparisons with true values")
 df_predictions_over_time = pd.read_csv('final_results.txt')
 df_per_unit = pd.read_csv('RUL_per_unit.txt')
