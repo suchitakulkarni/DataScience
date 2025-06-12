@@ -363,8 +363,8 @@ with st.expander("Dataset"):
     st.write("Software stack: pandas, numpy, plotly, sklearn, XGBoost, Optuna")
     st.write("Final notebook available here: %s"%(notebook_repo))
 st.subheader("Final RUL predictions and comparisons with true values")
-df_predictions_over_time = pd.read_csv('./final_results.txt')
-df_per_unit = pd.read_csv('./RUL_per_unit.txt')
+df_predictions_over_time = pd.read_csv('final_results.txt')
+df_per_unit = pd.read_csv('RUL_per_unit.txt')
 
 unit_no = df_predictions_over_time['unit_no'].unique()
 RUL05 = df_predictions_over_time['RUL_pred05'].values
