@@ -1,44 +1,44 @@
-🚀 Overview
+# Overview
 A high-performance computational physics engine for simulating two-body dynamics using advanced Hamiltonian mechanics. This library provides robust tools for orbital mechanics, spacecraft trajectory analysis, celestial body interactions, and real-time physics simulations.
-Key Applications:
 
-Satellite trajectory optimization
-Spacecraft mission planning
-Celestial mechanics simulation
-Gaming physics engines
-Educational visualization tools
+##Key Applications:
 
-✨ Features
+- Satellite trajectory optimization
+- Spacecraft mission planning
+- Celestial mechanics simulation
+- Gaming physics engines
+- Educational visualization tools
 
-High-Performance Computing: Optimized numerical solvers for real-time simulations
-Interactive Visualizations: Dynamic 3D plotting and animation capabilities
-Modular Architecture: Extensible codebase for custom physics implementations
-Industry-Standard APIs: Clean, documented interfaces for integration
-Cross-Platform Support: Works on Windows, macOS, and Linux
+## Features
 
-🎯 Use Cases
-Aerospace & Defense
+- High-Performance Computing: Optimized numerical solvers for real-time simulations
+- Interactive Visualizations: Dynamic 3D plotting and animation capabilities
+- Modular Architecture: Extensible codebase for custom physics implementations
+- Industry-Standard APIs: Clean, documented interfaces for integration
+- Cross-Platform Support: Works on Windows, macOS, and Linux
 
-Mission trajectory planning
-Satellite constellation design
-Orbital debris tracking
-Spacecraft rendezvous operations
+## Use Cases
+### Aerospace & Defense
+- Mission trajectory planning
+- Satellite constellation design
+- Orbital debris tracking
+- Spacecraft rendezvous operations
 
-Gaming & Entertainment
+###Gaming & Entertainment
 
-Realistic space physics for games
-Astronomical simulations
-VR/AR educational content
-Interactive planetarium software
+- Realistic space physics for games
+- Astronomical simulations
+- VR/AR educational content
+- Interactive planetarium software
 
-Research & Development
+### Research & Development
 
-Physics simulation prototyping
-Algorithm validation
-Performance benchmarking
-Educational demonstrations
+- Physics simulation prototyping
+- Algorithm validation
+- Performance benchmarking
+- Educational demonstrations
 
-Visual Demonstrations
+## Visual Demonstrations
 Orbital Mechanics Simulation
 <video width="600" controls>
   <source src="mp4_plots/phase_space_elliptic.mp4" type="video/mp4">
