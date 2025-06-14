@@ -11,6 +11,7 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 
 ### 🔧 [NASA_RUL_predictions](./NASA_RUL_predictions)
 **Goal**: Predict Remaining Useful Life (RUL) of aircraft engines from time-series sensor data using the NASA C-MAPSS dataset.  
+- **Dashboard**: [Streamlit App](https://nasaruldashboard.streamlit.app/)
 - **Methods**: Quantile regression, XGBoost, uncertainty quantification  
 - **Skills**: Time-series preprocessing, feature engineering, evaluation metrics  
 - **Outcome**: Predictive maintenance with interpretable confidence intervals.
@@ -34,7 +35,8 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 ---
 
 ### 🎶 [Taylor_Swift_recommender](./Taylor_Swift_recommender)
-**Goal**: Build a simple music recommender for Taylor Swift songs based on track features.  
+**Goal**: Build a simple music recommender for Taylor Swift songs based on track features.
+- **Dashboard**: [Streamlit App](https://tswiftrec.streamlit.app/)  
 - **Methods**: Content-based filtering  
 - **Skills**: Feature extraction, similarity metrics, basic NLP  
 - **Outcome**: Song-to-song recommendation engine based on mood, tempo, lyrics, and energy.
