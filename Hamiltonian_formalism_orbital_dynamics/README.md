@@ -8,9 +8,16 @@ This repository contains educational materials focused on theoretical physics, s
 
 ### Jupyter Notebooks
 
-- **`Two_body_Hamiltonian_formalism.ipynb`** - A comprehensive notebook covering the mathematical formalism of two-body problems using Hamiltonian mechanics, along with visualisations 
+- **`Two_body_Hamiltonian_formalism.ipynb`** - A comprehensive notebook covering the mathematical formalism of two-body problems using Hamiltonian mechanics, along with visualisations
 
-![Animation](plots_only/2_phase_space_elliptic.gif)
+### Visualisations contain
+-  Phase Space Evolution
+![Animation](plots_only/3_phase_space_hyperbolic.gif)
+
+- Orbits of both bodies
+![Animation](plots_only/phase_space_two_bodies_mratio_1.5.gif)
+
+- 
 
 ## Topics Covered
 
