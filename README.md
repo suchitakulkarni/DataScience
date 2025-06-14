@@ -25,16 +25,6 @@ Exploratory analysis of music streaming patterns and popularity metrics.
 - Tools: pandas, seaborn, matplotlib
 - Focus: EDA, feature extraction, music analytics
 
-### 🧪 [ML for Collider Physics – SUSY-AI (WIP)](./SUSY_AI)
-Application of supervised learning to collider physics data to identify signals of new physics (Supersymmetry).
-- Tools: Python, PyTorch, HPC
-- Focus: Scientific ML, Simulation-Based Inference
-
-### 🧠 [Transformers from Scratch](./transformer_from_scratch)
-Minimal implementation of transformer models for sequence modeling.
-- Tools: PyTorch
-- Focus: Deep Learning, NLP Architectures
-
 ---
 
 ## ⚙️ Technologies & Skills Demonstrated
@@ -43,7 +33,7 @@ Minimal implementation of transformer models for sequence modeling.
 - **ML Libraries:** scikit-learn, PyTorch, XGBoost
 - **Data Tools:** pandas, NumPy, matplotlib, seaborn
 - **DevOps:** Git, Docker
-- **HPC:** Experience running simulations on clusters (SLURM, MPI)
+- **HPC:** Experience running simulations on clusters
 
 ---
 
