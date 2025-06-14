@@ -1,4 +1,4 @@
-# Physics Lecture Repository
+# Two body dynamics using Hamiltonian formalism
 
 ## Overview
 
