@@ -16,7 +16,7 @@ This project predicts the Remaining Useful Life (RUL) of turbofan engines using 
 - Random Forest achieved RMSE of X and MAE of Y.
 - Visualization of predicted vs actual RUL shown below.
 
-![Predicted vs Actual RUL](images/rul_plot.png)
+![Predicted vs Actual RUL](images/final_predictions.png)
 
 ## How to Run
 1. Clone repo  
