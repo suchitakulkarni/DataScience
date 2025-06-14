@@ -1,112 +1,50 @@
-# Two body dynamics using Hamiltonian formalism
+🚀 Overview
+A high-performance computational physics engine for simulating two-body dynamics using advanced Hamiltonian mechanics. This library provides robust tools for orbital mechanics, spacecraft trajectory analysis, celestial body interactions, and real-time physics simulations.
+Key Applications:
 
-## Overview
+Satellite trajectory optimization
+Spacecraft mission planning
+Celestial mechanics simulation
+Gaming physics engines
+Educational visualization tools
 
-This repository contains educational materials focused on theoretical physics, specifically covering topics in Hamiltonian mechanics and two-body problems. The content is designed for advanced undergraduate or graduate-level physics courses.
+✨ Features
 
-## Contents
+High-Performance Computing: Optimized numerical solvers for real-time simulations
+Interactive Visualizations: Dynamic 3D plotting and animation capabilities
+Modular Architecture: Extensible codebase for custom physics implementations
+Industry-Standard APIs: Clean, documented interfaces for integration
+Cross-Platform Support: Works on Windows, macOS, and Linux
 
-### Jupyter Notebooks
+🎯 Use Cases
+Aerospace & Defense
 
-- **`Two_body_Hamiltonian_formalism.ipynb`** - A comprehensive notebook covering the mathematical formalism of two-body problems using Hamiltonian mechanics, along with visualisations
+Mission trajectory planning
+Satellite constellation design
+Orbital debris tracking
+Spacecraft rendezvous operations
 
-### Sample visualisations
+Gaming & Entertainment
 
-![Animation](plots_only/3_phase_space_hyperbolic.gif)
+Realistic space physics for games
+Astronomical simulations
+VR/AR educational content
+Interactive planetarium software
 
-## Topics Covered
+Research & Development
 
-### Hamiltonian Formalism
-- Introduction to Hamiltonian mechanics
-- Canonical transformations
-- Hamilton's equations of motion
-- Phase space analysis
-- Conservation laws and symmetries
+Physics simulation prototyping
+Algorithm validation
+Performance benchmarking
+Educational demonstrations
 
-### Two-Body Problems
-- Classical two-body dynamics
-- Reduced mass formalism
-- Central force problems
-- Orbital mechanics
-- Scattering theory fundamentals
-
-## Prerequisites
-
-To fully understand the material in this repository, students should have:
-
-- Strong background in classical mechanics (Lagrangian formalism)
-- Proficiency in multivariable calculus and differential equations
-- Linear algebra knowledge
-- Basic understanding of mathematical physics methods
-
-## Getting Started
-
-### Installation Requirements
-
-```bash
-# Required Python packages
-pip install jupyter numpy matplotlib scipy sympy
-```
-
-### Running the Notebooks
-
-1. Clone the repository:
-```bash
-git clone https://github.com/suchitakulkarni/lecture.git
-cd lecture/lecture
-```
-
-2. Start Jupyter Notebook:
-```bash
-jupyter notebook
-```
-
-3. Open `Two_body_Hamiltonian_formalism.ipynb` and follow along with the material
-
-## Learning Objectives
-
-After working through this material, students should be able to:
-
-- Apply Hamiltonian mechanics to solve two-body problems
-- Understand the relationship between Lagrangian and Hamiltonian formulations
-- Analyze phase space trajectories
-- Apply conservation laws to simplify complex problems
-- Understand the mathematical foundations of classical mechanics
-
-## Additional Resources
-
-### Recommended Textbooks
-- Goldstein, H. "Classical Mechanics" (3rd Edition)
-- Landau, L.D. & Lifshitz, E.M. "Mechanics"
-- Taylor, J.R. "Classical Mechanics"
-
-### Online Resources
-- [MIT OpenCourseWare - Classical Mechanics](https://ocw.mit.edu/courses/physics/)
-- [Physics Stack Exchange](https://physics.stackexchange.com/) for questions and discussions
-
-## Usage
-
-This material is intended for:
-- Physics students studying classical mechanics
-- Self-learners interested in theoretical physics
-- Educators looking for computational examples of Hamiltonian mechanics
-- Researchers needing review of fundamental concepts
-
-## Contributing
-
-If you find errors or have suggestions for improvements:
-1. Create an issue describing the problem or enhancement
-2. Submit a pull request with proposed changes
-3. Ensure all code examples run correctly before submitting
-
-## License
-
-Please check the repository's license file for usage rights and restrictions.
-
-## Contact
-
-For questions about the content or technical issues, please create an issue in this repository.
-
----
-
-**Note**: This repository is primarily educational. While the physics content is rigorous, always verify results for research applications.
+Visual Demonstrations
+Orbital Mechanics Simulation
+<video width="600" controls>
+  <source src="mp4_plots/phase_space_elliptic.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+Real-time satellite trajectory optimization with gravitational perturbations
+Multi-Body System Dynamics
+<video width="600" controls>
+  <source src="mp4_plots/phase_space_two_bodies_mratio_1.5.mp4" type="video/
