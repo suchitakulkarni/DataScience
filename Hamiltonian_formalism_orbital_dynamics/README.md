@@ -1,7 +1,7 @@
 # Overview
 A high-performance computational physics engine for simulating two-body dynamics using advanced Hamiltonian mechanics. This library provides robust tools for orbital mechanics, spacecraft trajectory analysis, celestial body interactions, and real-time physics simulations.
 
-##Key Applications:
+## Key Applications:
 
 - Satellite trajectory optimization
 - Spacecraft mission planning
@@ -24,7 +24,7 @@ A high-performance computational physics engine for simulating two-body dynamics
 - Orbital debris tracking
 - Spacecraft rendezvous operations
 
-###Gaming & Entertainment
+### Gaming & Entertainment
 
 - Realistic space physics for games
 - Astronomical simulations
