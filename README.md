@@ -1,54 +1,66 @@
-# Data Science Projects 🧠📊
+# 🧠 Data Science Portfolio
 
-Welcome! This repository is a collection of diverse data science and machine learning projects I've completed as part of my transition from theoretical physics to applied, data-driven problem solving. Projects range from exploratory data analysis to predictive modeling and deep learning, spanning both scientific and real-world datasets.
+Welcome! This repository showcases my hands-on experience in data science, machine learning, and statistical modeling. The projects here span predictive maintenance, recommender systems, music analytics, healthcare, and structured exercises from curated learning paths.
 
-> 👨‍🔬 Background: I'm a theoretical physicist with 10+ years of academic experience in high-performance computing, simulations, and mentoring, now applying those skills in the field of machine learning and data science.  
-> 🌍 Based in Austria | Open to roles across the DACH region | Fluent in English, conversational German (A1–B2).
-
----
-
-## 🔍 Featured Projects
-
-### 🔧 [NASA RUL Predictions](./NASA_RUL_predictions)
-Predicting the Remaining Useful Life of turbofan engines using machine learning on NASA’s C-MAPSS dataset.
-- Models: Quantile Regression (for Uncertainty Quantification), XGBoost
-- Tools: Python, pandas, scikit-learn, matplotlib
-- Focus: Predictive Maintenance, Time Series, Uncertainty Estimation
-
-### 💬 [Sentiment Analysis on Reddit](./Reddit_Sentiment)
-Classifying sentiment from Reddit posts using NLP techniques.
-- Models: Logistic Regression, Naive Bayes
-- Tools: Python, NLTK, scikit-learn, WordCloud
-
-### 🎵 [Taylor Swift Streaming Data Analysis](./TaylorSwift_Data)
-Exploratory analysis of music streaming patterns and popularity metrics.
-- Tools: pandas, seaborn, matplotlib
-- Focus: EDA, feature extraction, music analytics
+> 👤 I’m a former theoretical physicist with 10+ years of research experience, now applying simulation and modeling expertise to data science challenges.  
+> 🌍 Based in Austria | Open to applied roles across DACH | Fluent in English (German: A2–B1)
 
 ---
 
-## ⚙️ Technologies & Skills Demonstrated
+## 📂 Projects Overview
 
-- **Languages:** Python, Shell, some Mathematica
-- **ML Libraries:** scikit-learn, PyTorch, XGBoost
-- **Data Tools:** pandas, NumPy, matplotlib, seaborn
-- **DevOps:** Git, Docker
-- **HPC:** Experience running simulations on clusters
-
----
-
-## 🧭 Project Goals
-
-- Build a practical portfolio to demonstrate machine learning and data science expertise
-- Apply academic skills in simulation, analysis, and HPC to real-world datasets
-- Explore topics in predictive maintenance, NLP, deep learning, and scientific ML
-- Communicate results clearly through visualizations, documentation, and reproducible code
+### 🔧 [NASA_RUL_predictions](./NASA_RUL_predictions)
+**Goal**: Predict Remaining Useful Life (RUL) of aircraft engines from time-series sensor data using the NASA C-MAPSS dataset.  
+- **Methods**: Quantile regression, XGBoost, uncertainty quantification  
+- **Skills**: Time-series preprocessing, feature engineering, evaluation metrics  
+- **Outcome**: Predictive maintenance with interpretable confidence intervals.
 
 ---
 
-## 🛠 How to Use
+### 🧬 [PCOS_Kaggle](./PCOS_Kaggle)
+**Goal**: Predict presence of Polycystic Ovary Syndrome from health and demographic features (Kaggle dataset).  
+- **Methods**: Classification models (logistic regression, tree-based)  
+- **Skills**: Handling imbalanced data, visualization, model comparison  
+- **Outcome**: Identified key features and achieved meaningful predictive accuracy.
 
-1. Clone this repo  
+---
+
+### 🎶 [Taylor_Swift_recommender](./Taylor_Swift_recommender)
+**Goal**: Build a simple music recommender for Taylor Swift songs based on track features.  
+- **Methods**: Content-based filtering  
+- **Skills**: Feature extraction, similarity metrics, basic NLP  
+- **Outcome**: Song-to-song recommendation engine based on mood, tempo, lyrics, and energy.
+
+---
+
+### 📊 [T_Swift_Finale](./T_Swift_Finale), [T_Swift_week_2](./T_Swift_week_2), [T_swift](./T_swift)
+**Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
+- **Skills**: EDA, feature visualization, audio metadata analysis  
+- **Outcome**: Developed insights into popularity trends, sentiment, and musical evolution.
+
+---
+
+### 📘 [DS_roadmap_exercises](./DS_roadmap_exercises)
+**Goal**: Structured mini-projects and notebook exercises inspired by the Data Science Roadmap.  
+- **Topics**: Pandas, NumPy, exploratory analysis, basic ML pipelines  
+- **Use**: Learning log + skill demonstration  
+- **Outcome**: Solid foundation in Python-based data science workflows.
+
+---
+
+## 🧰 Tools & Skills
+
+- **Languages**: Python, some Mathematica
+- **Core Libraries**: pandas, NumPy, matplotlib, seaborn, scikit-learn, XGBoost
+- **Modeling**: Regression, classification, recommender systems, UQ (uncertainty quantification)
+- **DevOps**: Git, Docker
+- **Environment**: Jupyter, HPC experience (Slurm/MPI)
+
+---
+
+## 🧭 Getting Started
+
+1. **Clone the repository**
    ```bash
    git clone https://github.com/suchitakulkarni/DataScience.git
    cd DataScience
