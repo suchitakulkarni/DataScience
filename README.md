@@ -17,6 +17,12 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 
 ---
 
+### 🚀 [Hamiltonian formalism two body dynamics](./Hamiltonian_formalism_orbital_dynamics)
+**Goal**: Visualise two body dynamics using Hamiltonian formalism in phase space and physical space
+- **Methods**: Differential equation solver, animation  
+- **Skills**: Numerical differential equation solving, simulations  
+- **Outcome**: Demonstration of two body dynamics with effective visulisations useful for industry as well as academic enviornments
+
 ### 🧬 [PCOS_Kaggle](./PCOS_Kaggle)
 **Goal**: Predict presence of Polycystic Ovary Syndrome from health and demographic features (Kaggle dataset).  
 - **Methods**: Classification models (logistic regression, tree-based)  
