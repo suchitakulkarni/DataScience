@@ -14,9 +14,7 @@ This repository contains educational materials focused on theoretical physics, s
 
 ![Animation](plots_only/3_phase_space_hyperbolic.gif)
 
-![Animation](plots_only/phase_space_two_bodies_mratio_1.5.gif)
-
-- 
+![Animation](plots_only/phase_space_two_bodies_mratio_1.5.mp4)
 
 ## Topics Covered
 
