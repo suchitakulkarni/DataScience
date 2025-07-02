@@ -21,20 +21,6 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 
 ---
 
-### [Taylor_Swift_recommender](https://github.com/suchitakulkarni/DataScience/tree/main/Taylor_Swift_recommender)
-- **Goal**: Build a song recommender system using Taylor Swift's discography.
-- **Methods**: NLP (TF-IDF), cosine similarity, metadata analysis.
-- **Skills**: NLP, data wrangling, recommendation systems.
-
----
-
-### [T_Swift_Finale](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_Finale) [T_Swift_week_2](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_week_2), [T_swift](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift)
-**Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
-- **Skills**: EDA, feature visualization, audio metadata analysis  
-- **Outcome**: Developed insights into popularity trends, sentiment, and musical evolution.
-
----
-
 ### [Hamiltonian_formalism_orbital_dynamics](https://github.com/suchitakulkarni/DataScience/tree/main/Hamiltonian_formalism_orbital_dynamics)
 - **Goal**: Explore orbital dynamics using Hamiltonian mechanics.
 - **Methods**: Lagrangian and Hamiltonian modeling, simulation.
@@ -46,6 +32,20 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 - **Goal**: Predict the presence of Polycystic Ovary Syndrome (PCOS) using clinical data.
 - **Methods**: Classification models, EDA, data balancing.
 - **Skills**: SciKit-Learn, medical data analysis, model evaluation.
+
+---
+
+### [Taylor_Swift_recommender](https://github.com/suchitakulkarni/DataScience/tree/main/Taylor_Swift_recommender)
+- **Goal**: Build a song recommender system using Taylor Swift's discography.
+- **Methods**: NLP (TF-IDF), cosine similarity, metadata analysis.
+- **Skills**: NLP, data wrangling, recommendation systems.
+
+---
+
+### [T_Swift_Finale](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_Finale) [T_Swift_week_2](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_week_2), [T_swift](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift)
+**Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
+- **Skills**: EDA, feature visualization, audio metadata analysis  
+- **Outcome**: Developed insights into popularity trends, sentiment, and musical evolution.
 
 ---
 
