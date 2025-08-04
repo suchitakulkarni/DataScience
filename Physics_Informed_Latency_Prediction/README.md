@@ -17,6 +17,7 @@ This project models network latency between cities by combining physical princip
 ## Results
 * Residual analysis flagged anomalies exceeding 2σ from prediction.
 * Visualization examples included showing predicted vs actual latency and anomaly flags.
+![Results summary](simple_physics_vs_datadriven.pdf)
 
 # How to Run
 Clone the repository:
