@@ -28,8 +28,8 @@ np.random.seed(42)
 FIBER_SPEED = 2e8  # speed of light in optical fiber (m/s)
 TRUE_PHYSICS_SLOPE = 1000 / FIBER_SPEED * 1000  # ms/km = 0.005
 
-train_data = pd.read_csv('enahnced_simulation_train_data.dat')
-test_data = pd.read_csv('enahnced_simulation_test_data.dat')
+train_data = pd.read_csv('data/enahnced_simulation_train_data.dat')
+test_data = pd.read_csv('data/enahnced_simulation_test_data.dat')
 
 print(f"Training data: {len(train_data)} samples")
 print(f"  Distance range: {train_data['geo_distance_km'].min():.0f} - {train_data['geo_distance_km'].max():.0f} km")
@@ -266,7 +266,7 @@ for bar, score in zip(bars1, f1_scores):
             f'{score:.3f}', ha='center', va='bottom', fontsize=9)
 
 plt.tight_layout()
-plt.savefig('simple_physics_vs_datadriven.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('results/simple_physics_vs_datadriven.pdf', dpi=300, bbox_inches='tight')
 #plt.show()
 
 # ============================================================================
@@ -283,23 +283,18 @@ print(f"   Data-driven slope error: {slope_error_pct:.1f}%")
 
 if physics_ad['f1'] >= data_ad['f1']:
     print(f"\n PHYSICS-INFORMED WINS:")
-    print(f"   • Better anomaly detection (F1: {physics_ad['f1']:.3f} vs {data_ad['f1']:.3f})")
-    print(f"   • No training bias dependency")
-    print(f"   • Interpretable residuals")
+    print(f"   Better anomaly detection (F1: {physics_ad['f1']:.3f} vs {data_ad['f1']:.3f})")
+    print(f"   No training bias dependency")
+    print(f"   Interpretable residuals")
 else:
     print(f"\n DATA-DRIVEN COMPETITIVE:")
-    print(f"   • Better prediction accuracy (MSE: {data_mse:.2f} vs {physics_mse:.2f})")
-    print(f"   • But learned wrong baseline from biased training")
+    print(f"   Better prediction accuracy (MSE: {data_mse:.2f} vs {physics_mse:.2f})")
+    print(f"   But learned wrong baseline from biased training")
 
-print(f"\n💡 KEY INSIGHTS:")
+print(f"\n KEY INSIGHTS:")
 print(f"   1. Training data bias severely affects data-driven baselines")
 print(f"   2. Physics-informed provides robust baseline regardless of training bias")
-print(f"   3. Hybrid combines physics knowledge with data-driven corrections")
-print(f"   4. Pure physics may not always win on accuracy, but wins on interpretability")
+print(f"   3. Pure physics may not always win on accuracy, but wins on interpretability")
 
 print(f"\n FILES SAVED:")
-print(f"   • simple_physics_vs_datadriven.pdf (visualization)")
-
-print(f"\n RECOMMENDATION:")
-print(f"   Use hybrid physics + data-driven approach for production systems")
-print(f"   Physics provides robust baseline, data learns domain-specific corrections")
+print(f"   results/simple_physics_vs_datadriven.pdf (visualization)")

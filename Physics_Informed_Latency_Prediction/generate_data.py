@@ -154,6 +154,6 @@ for i, city_a in enumerate(all_cities):
 print("Generating datasets...")
 train_data = generate_latency_data(short_pairs, n_samples=800, anomaly_rate=0.04)
 test_data = generate_latency_data(all_pairs, n_samples=1200, anomaly_rate=0.05)
-train_data.to_csv('enahnced_simulation_train_data.dat')
-test_data.to_csv('enahnced_simulation_test_data.dat')
+train_data.to_csv('data/enahnced_simulation_train_data.dat')
+test_data.to_csv('data/enahnced_simulation_test_data.dat')
 

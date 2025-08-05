@@ -22,14 +22,20 @@ This project models network latency between cities by combining physical princip
 # How to Run
 Clone the repository:
 
-git clone <repo_url>
-cd <repo_folder>
+git clone https://github.com/suchitakulkarni/DataScience/tree/main/Physics_Informed_Latency_Prediction
+cd Physics_Informed_Latency_Prediction
 Create and activate Python environment:
 
 pip install -r requirements.txt
-Run the notebook for data generation, modeling, and analysis:
+Run the notebook for analysis with a simplistic dataset where ground truth (fibre cable length) is known:
 
-jupyter notebook notebooks/network_latency_rul.ipynb
+jupyter notebook notebooks/Linear_regression_vs_physics.ipynb
+
+Run the main.py for analysis with more realistic dataset where ground truth (fibre cable length) is unknown:
+python main.py
+
+To generate the data used by main.py use
+python generate_data.py
 
 # Future Work
 * Benchmark against different ML models and develop test scenarios.
