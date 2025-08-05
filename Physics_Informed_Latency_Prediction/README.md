@@ -25,17 +25,21 @@ Clone the repository:
 git clone https://github.com/suchitakulkarni/DataScience/tree/main/Physics_Informed_Latency_Prediction
 
 cd Physics_Informed_Latency_Prediction
+
 Create and activate Python environment:
 
 pip install -r requirements.txt
+
 Run the notebook for analysis with a simplistic dataset where ground truth (fibre cable length) is known:
 
 jupyter notebook notebooks/Linear_regression_vs_physics.ipynb
 
 Run the main.py for analysis with more realistic dataset where ground truth (fibre cable length) is unknown:
+
 python main.py
 
 To generate the data used by main.py use
+
 python generate_data.py
 
 # Future Work
