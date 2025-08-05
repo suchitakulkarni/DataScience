@@ -23,6 +23,7 @@ This project models network latency between cities by combining physical princip
 Clone the repository:
 
 git clone https://github.com/suchitakulkarni/DataScience/tree/main/Physics_Informed_Latency_Prediction
+
 cd Physics_Informed_Latency_Prediction
 Create and activate Python environment:
 
