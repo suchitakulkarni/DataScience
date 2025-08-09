@@ -11,7 +11,7 @@ from math import radians, sin, cos, sqrt, atan2
 import warnings
 warnings.filterwarnings('ignore')
 
-def evaluate_anomaly_detection(residuals, true_anomalies, method_name, threshold_sigma=2.5):
+def evaluate_anomaly_detection(residuals, true_anomalies, threshold_sigma=2.5):
     """Evaluate anomaly detection using residuals"""
     # Convert to z-scores
     z_scores = (residuals - np.mean(residuals)) / np.std(residuals)

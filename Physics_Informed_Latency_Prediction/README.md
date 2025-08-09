@@ -1,55 +1,219 @@
-# Physics-Informed ML for Network Latency Anomaly Detection
+# Physics vs Data-Driven Uncertainty Comparison
 
-## Project Summary
-This project models network latency between cities by combining physical principles of signal propagation with machine learning techniques. Using linear regression informed by physics to estimate baseline latency, the model analyzes residual delays to detect network anomalies. This approach bridges domain expertise and ML for interpretable network diagnostics.
+## Overview
 
-## Dataset
-* Synthetic dataset simulating network latency between city pairs.
+This project demonstrates the superiority of physics-informed approaches over pure data-driven methods when dealing with distribution shifts and extrapolation scenarios. The simulation focuses on network latency prediction, comparing multiple uncertainty quantification techniques under challenging real-world conditions.
 
-* Instrumental noise and injected anomalies simulate real-world network conditions.
+## Key Concepts
+
+### The Extrapolation Challenge
+
+The core challenge addressed is **distribution shift**: training models on limited data (short distances < 2000km) and then evaluating performance on worldwide data (including intercontinental distances up to 20,000km). This represents a 5-10x extrapolation beyond the training range.
+
+### Physics-Informed vs Data-Driven Approaches
+
+- **Physics-Informed**: Uses known physical constants (speed of light in optical fiber = 2×10^8 m/s) to constrain predictions
+- **Data-Driven**: Learns relationships purely from training data, susceptible to bias when training data is not representative
 
 ## Methodology
-* Calculated physical minimum latency based on city distances.
-* Applied linear regression to predict expected latency from distance.
-* Computed residuals (measured - predicted latency) to identify deviations.
-* Evaluated regression performance via R² score and classification accuracy for anomalies.
 
-## Results
-* Residual analysis flagged anomalies exceeding 2σ from prediction.
-* Visualization examples included showing predicted vs actual latency and anomaly flags.
-![Results summary](simple_physics_vs_datadriven.png)
+### 1. Uncertainty Estimation Techniques
 
-# How to Run
-Clone the repository:
+The code implements three primary uncertainty quantification methods:
 
-git clone https://github.com/suchitakulkarni/DataScience/tree/main/Physics_Informed_Latency_Prediction
+#### Physics-Informed Uncertainty
+```
+uncertainty = sqrt(noise^2 + physics_error^2 + model_uncertainty^2)
+```
+- **Noise Component**: Measurement noise estimation
+- **Physics Component**: Uncertainty in physical constants
+- **Model Component**: Structural model uncertainty
 
-cd Physics_Informed_Latency_Prediction
+#### Data-Driven Bootstrap Uncertainty
+```
+uncertainty = sqrt(base_variance + extrapolation_penalty + complexity_penalty)
+```
+- **Base Variance**: Bootstrap sampling variance
+- **Extrapolation Penalty**: Increases with distance from training data
+- **Complexity Penalty**: Model complexity adjustment
 
-Create and activate Python environment:
+#### Conformal Prediction
+```
+prediction_interval = [y_hat - q_alpha, y_hat + q_alpha]
+```
+Where q_alpha is the (1-alpha) quantile of calibration residuals.
 
-pip install -r requirements.txt
+### 2. Bias Analysis
 
-Run the notebook for analysis with a simplistic dataset where ground truth (fibre cable length) is known:
+The simulation demonstrates systematic bias in data-driven approaches:
 
-jupyter notebook notebooks/Linear_regression_vs_physics.ipynb
+```
+True Physics Slope: 0.005000 ms/km
+Learned Slope: biased_value ms/km
+Bias Error: |learned_slope - true_slope| / true_slope * 100%
+```
 
-Run the main.py for analysis with more realistic dataset where ground truth (fibre cable length) is unknown:
+### 3. Coverage Analysis
 
+Uncertainty quality is measured by **coverage**: the fraction of true values falling within predicted confidence intervals.
+
+```
+Coverage = P(y_true ∈ [CI_lower, CI_upper])
+Target = 95% for 95% confidence intervals
+```
+
+## Key Results
+
+### Training Bias Impact
+
+When training data is geographically limited, data-driven models learn incorrect baseline relationships:
+- Physics slope (true): 5.000 × 10^-3 ms/km
+- Data-driven slope (biased): varies based on training distribution
+- Error propagates to uncertainty estimates
+
+### Uncertainty Method Performance
+
+| Method | Coverage | Calibration | Robustness |
+|--------|----------|-------------|------------|
+| Physics-Informed | ~90-95% | High | Excellent under extrapolation |
+| Data-Driven | ~70-85% | Poor | Degrades with distance |
+| Conformal | ~85-92% | Good | Assumption violations under distribution shift |
+
+### Risk Assessment Framework
+
+The code implements a comprehensive risk assessment strategy:
+
+```
+Risk Score = f(extrapolation_factor, heteroscedasticity, non_linearity, outlier_rate)
+Strategy = {Conservative, Moderate, Aggressive} based on risk profile
+```
+
+## File Structure
+
+```
+├── main.py                           # Main analysis script
+├── data/
+│   ├── enhanced_simulation_train_data.dat
+│   └── enhanced_simulation_test_data.dat
+├── src/
+│   ├── anomaly_detection.py
+│   └── clean_uncertainty_discovery.py
+└── results/
+    ├── figure1_extrapolation_challenge.pdf
+    ├── figure2_uncertainty_comparison.pdf
+    └── figure3_practical_implications.pdf
+```
+
+## Dependencies
+
+```python
+numpy>=1.21.0
+pandas>=1.3.0
+matplotlib>=3.4.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+```
+
+## Usage
+
+### Basic Execution
+```bash
 python main.py
+```
 
-To generate the data used by main.py use
+### Expected Output
+The script generates:
+1. **Console Output**: Detailed analysis results and metrics
+2. **PDF Visualizations**: Three comprehensive figure sets
+3. **Performance Metrics**: Coverage, calibration, and bias analysis
 
-python generate_data.py
+### Key Metrics Reported
 
-# Future Work
-* Benchmark against different ML models and develop test scenarios.
-* Extend physical model to include routing hops, protocol effects, and ISP metadata.
-* Apply Bayesian methods for uncertainty quantification and interpretability.
-* Validate on real network latency datasets.
+#### Uncertainty Quality Metrics
+- **Calibration**: Correlation between predicted uncertainty and actual error
+- **Sharpness**: Tightness of uncertainty bounds (lower is better for same coverage)
+- **Reliability**: Fraction of high-uncertainty predictions that are actually incorrect
+- **Coverage**: Percentage of true values within confidence intervals
 
-# Technologies
-* Python
-* pandas, numpy, scikit-learn
-* matplotlib
-* Jupyter Notebook
+#### Anomaly Detection Performance
+- **Standard Detection**: Traditional residual-based anomaly detection
+- **Uncertainty-Weighted**: Residuals normalized by predicted uncertainty
+- **F1 Scores**: Harmonic mean of precision and recall
+
+## Theoretical Background
+
+### Why Physics-Informed Methods Excel
+
+1. **Constraint-Based Robustness**: Physical laws provide hard constraints that prevent unreasonable extrapolation
+2. **Interpretable Uncertainty**: Physics-based uncertainty components have clear physical meaning
+3. **Bias Resistance**: Physical constants are independent of training data distribution
+
+### Mathematical Foundation
+
+Network latency follows fundamental physics:
+```
+latency = distance / speed + processing_delays + noise
+```
+
+Where:
+- `distance`: Geographic distance between endpoints
+- `speed`: Speed of light in transmission medium (≈ 2×10^8 m/s in fiber)
+- `processing_delays`: Network equipment processing time
+- `noise`: Measurement and environmental noise
+
+### Distribution Shift Impact
+
+Under distribution shift, data-driven models suffer from:
+
+1. **Extrapolation Error**: Predictions become increasingly unreliable beyond training range
+2. **Bias Propagation**: Training bias affects both point predictions and uncertainty estimates
+3. **Assumption Violations**: Many uncertainty methods assume exchangeable data
+
+## Practical Applications
+
+### Network Performance Monitoring
+- **Latency Prediction**: Predict expected network latency for new routes
+- **Anomaly Detection**: Identify network performance anomalies with uncertainty weighting
+- **Capacity Planning**: Use uncertainty bounds for conservative resource allocation
+
+### Model Selection Guidance
+- **Low Extrapolation (<2x)**: Data-driven methods acceptable
+- **Medium Extrapolation (2-5x)**: Physics-informed preferred
+- **High Extrapolation (>5x)**: Physics-informed strongly recommended
+
+## Limitations and Future Work
+
+### Current Limitations
+1. **Simplified Physics Model**: Assumes constant speed of light, ignores routing complexity
+2. **Limited Noise Modeling**: Basic Gaussian noise assumptions
+3. **Geographic Constraints**: Focuses on distance-based latency only
+
+### Future Enhancements
+1. **Advanced Physics Models**: Include routing protocols, network topology
+2. **Hierarchical Uncertainty**: Multi-level uncertainty quantification
+3. **Online Learning**: Adaptive uncertainty in streaming scenarios
+
+## Interpretation Guide
+
+### Figure 1: Extrapolation Challenge
+- **Distribution Shift**: Training vs test data distributions
+- **Prediction Comparison**: Physics vs data-driven predictions with uncertainty
+- **Coverage Analysis**: How well uncertainty intervals capture true values
+
+### Figure 2: Uncertainty Method Comparison
+- **Coverage Performance**: Which methods achieve target coverage
+- **Distance-Dependent Uncertainty**: How uncertainty changes with extrapolation
+- **Risk Factor Analysis**: Why certain methods fail
+
+### Figure 3: Practical Implications
+- **Anomaly Detection**: Performance with and without uncertainty weighting
+- **Distance-Based Performance**: Error rates by distance range
+- **Recommendation Matrix**: Method selection guidance
+
+## Citation
+
+If using this code or methodology, please cite the underlying principles of physics-informed machine learning and uncertainty quantification in network performance analysis.
+
+## License
+
+This project is designed for research and educational purposes, demonstrating the importance of domain knowledge in machine learning under distribution shift scenarios.

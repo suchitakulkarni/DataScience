@@ -12,6 +12,8 @@ __pycache__/
 
 # macOS files
 .DS_Store
+old_codes
+old_app_codes
 
 # Editor / IDE files
 *.swp
