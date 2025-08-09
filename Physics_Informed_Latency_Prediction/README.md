@@ -98,6 +98,12 @@ Strategy = {Conservative, Moderate, Aggressive} based on risk profile
 ├── src/
 │   ├── anomaly_detection.py
 │   └── clean_uncertainty_discovery.py
+│   └── generate_data.py
+├── app/
+│   ├── streamlit_app.py
+│   └── app.py
+├── notebooks/
+│   └── Linear_regression_vs_physics.ipynb
 └── results/
     ├── figure1_extrapolation_challenge.pdf
     ├── figure2_uncertainty_comparison.pdf
@@ -116,7 +122,26 @@ scipy>=1.7.0
 
 ## Usage
 
-### Basic Execution
+There are several different ways to understand the code. 
+
+### Simplest demonstration 
+```bash
+jupyter notebook notebooks/Linear_regression_vs_physics.ipynb
+```
+This demonstrates the basic principle on the basis of which the project was developed. Contains no data analysis. 
+However it shows how one can tune anomaly detection threshold.
+
+### Streamlit app
+```bash
+streamlit run app/streamlit_app.py
+```
+Interactive app showing details of many statistical tests included in the code.
+```bash
+streamlit run app/app.py
+```
+Basic streamlit app.
+
+### Basic Execution of command line interface
 ```bash
 python main.py
 ```
