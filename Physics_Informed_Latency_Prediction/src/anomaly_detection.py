@@ -33,3 +33,23 @@ def evaluate_anomaly_detection(residuals, true_anomalies, threshold_sigma=2.5):
         'predictions': predictions,
         'scores': anomaly_scores
     }
+
+# Uncertainty-weighted anomaly detection
+def uncertainty_weighted_anomaly_detection(residuals, uncertainties, true_anomalies, threshold_multiplier=2.0):
+    # Normalize residuals by uncertainty
+    normalized_scores = np.abs(residuals) / uncertainties
+    threshold = threshold_multiplier  # 2-sigma equivalent
+    predictions = normalized_scores > threshold
+    print("residuals = ", normalized_scores)
+
+    precision = precision_score(true_anomalies, predictions) if np.sum(predictions) > 0 else 0
+    recall = recall_score(true_anomalies, predictions)
+    f1 = f1_score(true_anomalies, predictions)
+
+    return {
+        'precision': precision,
+        'recall': recall,
+        'f1': f1,
+        'n_detected': np.sum(predictions),
+        'threshold': threshold
+    }

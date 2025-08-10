@@ -15,6 +15,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error
 from scipy import stats
 import warnings
+import copy
 warnings.filterwarnings('ignore')
 
 class BlindUncertaintyEstimator:
@@ -257,10 +258,12 @@ class BlindUncertaintyEstimator:
         base_predictions = distances * base_physics_slope
         
         # ADAPTIVE COMPONENTS based on discovered patterns
-        
+
         # 1. Base measurement noise (adapted from residual analysis)
+        print("patterns_discovered at call:", self.patterns_discovered)
         if 'outlier_analysis' in self.patterns_discovered:
-            base_noise = self.patterns_discovered['outlier_analysis']['residual_std']
+            #base_noise = self.patterns_discovered['outlier_analysis']['residual_std']
+            base_noise = float(self.patterns_discovered['outlier_analysis']['residual_std'])
         else:
             base_noise = 2.0  # Default
         
@@ -296,19 +299,20 @@ class BlindUncertaintyEstimator:
         
         # Total uncertainty
         total_std = np.sqrt(noise_std**2 + physics_std**2 + model_uncertainty**2)
-        
-        return {
-            'predictions': base_predictions,
-            'uncertainty': total_std,
-            'lower_bound': base_predictions - self.z_score * total_std,
-            'upper_bound': base_predictions + self.z_score * total_std,
+        dict = {
+            'predictions': base_predictions.copy(),
+            'uncertainty': total_std.copy(),
+            'lower_bound': (base_predictions - self.z_score * total_std).copy(),
+            'upper_bound': (base_predictions + self.z_score * total_std).copy(),
             'confidence_level': self.confidence_level,
             'components': {
-                'noise': noise_std,
-                'physics': physics_std,
-                'model': model_uncertainty
+                'noise': (noise_std).copy(),
+                'physics': (physics_std).copy(),
+                'model': (model_uncertainty).copy()
             }
         }
+        return copy.deepcopy(dict)
+        #return dict
     
     def extrapolation_aware_data_uncertainty(self, X_train, y_train, X_test, method='bootstrap'):
         """
@@ -479,7 +483,7 @@ def comprehensive_blind_analysis(train_data, test_data, confidence_level=0.95):
     
     # STEP 3: Compare uncertainty methods
     results = {}
-    
+    print('calling phy unc from comprehensive_blind_analysis')
     # Adaptive physics
     results['adaptive_physics'] = estimator.adaptive_physics_uncertainty(X_test.flatten())
     

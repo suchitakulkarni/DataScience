@@ -135,11 +135,11 @@ However it shows how one can tune anomaly detection threshold.
 ```bash
 streamlit run app/streamlit_app.py
 ```
-Interactive app showing details of many statistical tests included in the code.
+Interactive app showing details of data analysis and visualisation along with details of statistical tests.
 ```bash
 streamlit run app/app.py
 ```
-Basic streamlit app.
+Basic streamlit app to demonstrate the tests used and has ability to generate new data to create additional visualisations.
 
 ### Basic Execution of command line interface
 ```bash

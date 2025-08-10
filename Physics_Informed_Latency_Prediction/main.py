@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import precision_score, recall_score, f1_score, mean_squared_error
 from sklearn.model_selection import train_test_split
-from src.anomaly_detection import evaluate_anomaly_detection
+from src.anomaly_detection import evaluate_anomaly_detection, uncertainty_weighted_anomaly_detection
 from src.clean_uncertainty_discovery import (BlindUncertaintyEstimator, production_uncertainty_strategy,
                                              comprehensive_blind_analysis, get_pattern_summary)
 
@@ -111,6 +111,8 @@ physics_uncertainty = uncertainty_estimator.adaptive_physics_uncertainty(
     X_test.flatten(), base_physics_slope=TRUE_PHYSICS_SLOPE
 )
 
+print('physics_uncertainty = ', physics_uncertainty)
+sys.exit()
 print("1. PHYSICS-INFORMED APPROACH WITH UNCERTAINTY:")
 print(f"   Uses: distance * {TRUE_PHYSICS_SLOPE:.6f} ms/km")
 print(f"   Test MSE: {physics_mse:.2f}")
@@ -218,31 +220,12 @@ print(f"\n" + "=" * 60)
 print("UNCERTAINTY-AWARE ANOMALY DETECTION")
 print("=" * 60)
 
+print('physics residuals = ', physics_residuals)
 # Standard anomaly detection
 physics_ad = evaluate_anomaly_detection(physics_residuals, y_true_anomalies)
 data_ad = evaluate_anomaly_detection(data_residuals, y_true_anomalies)
 
-
-# Uncertainty-weighted anomaly detection
-def uncertainty_weighted_anomaly_detection(residuals, uncertainties, true_anomalies, threshold_multiplier=2.0):
-    # Normalize residuals by uncertainty
-    normalized_scores = np.abs(residuals) / uncertainties
-    threshold = threshold_multiplier  # 2-sigma equivalent
-    predictions = normalized_scores > threshold
-
-    precision = precision_score(true_anomalies, predictions) if np.sum(predictions) > 0 else 0
-    recall = recall_score(true_anomalies, predictions)
-    f1 = f1_score(true_anomalies, predictions)
-
-    return {
-        'precision': precision,
-        'recall': recall,
-        'f1': f1,
-        'n_detected': np.sum(predictions),
-        'threshold': threshold
-    }
-
-
+print('physics_uncertainty[uncertainty] = ', physics_uncertainty['uncertainty'])
 physics_weighted_ad = uncertainty_weighted_anomaly_detection(
     physics_residuals, physics_uncertainty['uncertainty'], y_true_anomalies
 )
