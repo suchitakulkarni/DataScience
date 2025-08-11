@@ -40,7 +40,6 @@ def uncertainty_weighted_anomaly_detection(residuals, uncertainties, true_anomal
     normalized_scores = np.abs(residuals) / uncertainties
     threshold = threshold_multiplier  # 2-sigma equivalent
     predictions = normalized_scores > threshold
-    print("residuals = ", normalized_scores)
 
     precision = precision_score(true_anomalies, predictions) if np.sum(predictions) > 0 else 0
     recall = recall_score(true_anomalies, predictions)

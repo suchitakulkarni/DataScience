@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 import os
 
 # Import the uncertainty estimation class
-from src.clean_uncertainty_discovery import BlindUncertaintyEstimator, comprehensive_blind_analysis, \
+from src.uncertainty_discovery import BlindUncertaintyEstimator, comprehensive_blind_analysis, \
     production_uncertainty_strategy
 from visualisation import plot_uncertainty_comparison, plot_heteroscedasticity_test
 

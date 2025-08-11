@@ -260,7 +260,6 @@ class BlindUncertaintyEstimator:
         # ADAPTIVE COMPONENTS based on discovered patterns
 
         # 1. Base measurement noise (adapted from residual analysis)
-        print("patterns_discovered at call:", self.patterns_discovered)
         if 'outlier_analysis' in self.patterns_discovered:
             #base_noise = self.patterns_discovered['outlier_analysis']['residual_std']
             base_noise = float(self.patterns_discovered['outlier_analysis']['residual_std'])
@@ -483,7 +482,6 @@ def comprehensive_blind_analysis(train_data, test_data, confidence_level=0.95):
     
     # STEP 3: Compare uncertainty methods
     results = {}
-    print('calling phy unc from comprehensive_blind_analysis')
     # Adaptive physics
     results['adaptive_physics'] = estimator.adaptive_physics_uncertainty(X_test.flatten())
     

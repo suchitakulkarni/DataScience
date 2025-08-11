@@ -20,7 +20,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import precision_score, recall_score, f1_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from src.anomaly_detection import evaluate_anomaly_detection, uncertainty_weighted_anomaly_detection
-from src.clean_uncertainty_discovery import (BlindUncertaintyEstimator, production_uncertainty_strategy,
+from src.uncertainty_discovery import (BlindUncertaintyEstimator, production_uncertainty_strategy,
                                              comprehensive_blind_analysis, get_pattern_summary)
 
 import sys
@@ -111,8 +111,6 @@ physics_uncertainty = uncertainty_estimator.adaptive_physics_uncertainty(
     X_test.flatten(), base_physics_slope=TRUE_PHYSICS_SLOPE
 )
 
-print('physics_uncertainty = ', physics_uncertainty)
-sys.exit()
 print("1. PHYSICS-INFORMED APPROACH WITH UNCERTAINTY:")
 print(f"   Uses: distance * {TRUE_PHYSICS_SLOPE:.6f} ms/km")
 print(f"   Test MSE: {physics_mse:.2f}")

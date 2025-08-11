@@ -1,8 +1,33 @@
 import streamlit as st
-import streamlit_app
+import uncertainty_demo
 import final_summary, basic_demo
 import pandas as pd
-from src.clean_uncertainty_discovery import BlindUncertaintyEstimator, comprehensive_blind_analysis, \
+from src.uncertainty_discovery import BlindUncertaintyEstimator, comprehensive_blind_analysis, \
+    production_uncertainty_strategy
+from src.anomaly_detection import evaluate_anomaly_detection, uncertainty_weighted_anomaly_detection
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import precision_score, recall_score, f1_score, mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score, train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+
+
+# Physics constants
+FIBER_SPEED = 2e8  # speed of light in optical fiber (m/s)
+TRUE_PHYSICS_SLOPE = 1000 / FIBER_SPEED * 1000  # ms/km = 0.005
+
+#st.set_page_config(
+#    page_title="Uncertainty Discovery in Latency Prediction",
+#    layout="wide"
+#)
+
+# Custom CSS for better styling
+import streamlit as st
+import uncertainty_demo
+import final_summary, basic_demo
+import pandas as pd
+from src.uncertainty_discovery import BlindUncertaintyEstimator, comprehensive_blind_analysis, \
     production_uncertainty_strategy
 from src.anomaly_detection import evaluate_anomaly_detection, uncertainty_weighted_anomaly_detection
 from sklearn.linear_model import LinearRegression
@@ -56,6 +81,52 @@ st.markdown("""
         border-left: 4px solid #28a745;
         margin: 1rem 0;
     }
+    
+    /* Enhanced tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 24px;
+        background-color: #f8f9fa;
+        padding: 8px 16px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        height: 56px;
+        white-space: pre-wrap;
+        background-color: white;
+        border-radius: 8px;
+        color: #262730;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px 24px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #1f77b4;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(31, 119, 180, 0.3);
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #e3f2fd;
+        border-color: #1f77b4;
+        transform: translateY(-1px);
+    }
+    
+    .stTabs [aria-selected="true"]:hover {
+        background-color: #1565c0;
+        transform: translateY(-2px);
+    }
+    
+    /* Tab content styling */
+    .stTabs [data-baseweb="tab-panel"] {
+        padding: 24px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -63,7 +134,6 @@ st.markdown("""
 st.sidebar.markdown("## Analysis Controls")
 confidence_level = st.sidebar.slider("Confidence Level", 0.80, 0.99, 0.95)
 threshold = st.sidebar.slider("Anomaly Detection Threshold ($\\sigma$)", 1.0, 4.0, 2.5, 0.1)
-show_cv = st.sidebar.checkbox("Show Cross-Validation Results", True)
 show_detailed = st.sidebar.checkbox("Show Detailed Analysis", False)
 
 test_data = pd.read_csv('data/enahnced_simulation_test_data.dat')
@@ -76,10 +146,6 @@ X_test = test_data[['geo_distance_km']].values
 y_test = test_data['measured_latency_ms'].values
 y_true_anomalies = test_data['is_anomaly'].values
 
-# Create train/validation split for cross-validation
-X_train_cv, X_val_cv, y_train_cv, y_val_cv = train_test_split(
-    X_train, y_train, test_size=0.2, random_state=42
-)
 
 basic_demo_dict = {}
 # APPROACH 1: PHYSICS-INFORMED WITH UNCERTAINTY
@@ -103,10 +169,6 @@ learned_intercept = data_model.intercept_
 physics_ad = evaluate_anomaly_detection(physics_residuals, y_true_anomalies)
 data_ad = evaluate_anomaly_detection(data_residuals, y_true_anomalies)
 
-# Perform cross-validation on training data
-if show_cv:
-    cv_scores = cross_val_score(data_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
-    cv_r2_scores = cross_val_score(data_model, X_train, y_train, cv=5, scoring='r2')
 
 estimator = BlindUncertaintyEstimator(confidence_level=confidence_level)
 estimator.discover_data_patterns(train_data, test_data)
@@ -157,7 +219,7 @@ with tab1:
 
 with tab2:
     st.header("Details of uncertainty analysis")
-    streamlit_app.uncertainty_details(train_data, test_data, confidence_level, patterns, results)
+    uncertainty_demo.uncertainty_details(train_data, test_data, confidence_level, patterns, results)
 
 with tab3:
     st.header("Final summary")

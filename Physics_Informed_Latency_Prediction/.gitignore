@@ -34,3 +34,5 @@ env/
 # System files
 Thumbs.db
 
+# private codes
+basic_demo.py
