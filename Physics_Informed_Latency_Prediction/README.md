@@ -100,7 +100,10 @@ Strategy = {Conservative, Moderate, Aggressive} based on risk profile
 │   └── clean_uncertainty_discovery.py
 │   └── generate_data.py
 ├── app/
-│   ├── streamlit_app.py
+│   ├── app_driver.py
+│   ├── uncertainty_demo.py
+│   ├── visualisation.py
+│   ├── final_summary.py
 │   └── app.py
 ├── notebooks/
 │   └── Linear_regression_vs_physics.ipynb
@@ -108,6 +111,9 @@ Strategy = {Conservative, Moderate, Aggressive} based on risk profile
     ├── figure1_extrapolation_challenge.pdf
     ├── figure2_uncertainty_comparison.pdf
     └── figure3_practical_implications.pdf
+    └── uncertainty_comparison.png
+    └── heteroscedasticity_analysis.png
+    
 ```
 
 ## Dependencies
@@ -133,7 +139,7 @@ However it shows how one can tune anomaly detection threshold.
 
 ### Streamlit app
 ```bash
-streamlit run app/streamlit_app.py
+streamlit run app/app_driver.py
 ```
 Interactive app showing details of data analysis and visualisation along with details of statistical tests.
 ```bash
