@@ -1,6 +1,6 @@
 # Scientific Paper Analysis Pipeline
 
-> **Note**: This project is currently work in progress. The large monolith code needs to be refactored. The code has been tested for quick analysis option.
+> **Note**: This project is currently work in progress. The large monolith code needs to be refactored. The code has been tested for quick analysis option. The methods for common_question_themes need to be tuned better.
 
 An automated pipeline for analyzing scientific literature using multi-agent LLM orchestration and semantic clustering techniques.
 
