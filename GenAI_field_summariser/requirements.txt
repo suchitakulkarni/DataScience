@@ -1,0 +1,110 @@
+# Scientific Paper Analysis Pipeline - Setup Guide
+
+This project is currently work under progress. The large monolith code needs to be refactored. The code has been tested for quick analysis option. 
+
+## Hardware Optimization for 16GB MacBook Pro 2020
+
+This setup is specifically optimized for your hardware constraints:
+
+### Memory Management Strategy
+- **Lightweight models**: Using Llama 3.2 3B (requires ~4GB RAM)
+- **Batch processing**: Papers analyzed in small batches to prevent memory overflow
+- **Efficient embeddings**: Using sentence-transformers with small models
+- **Incremental processing**: Data saved incrementally to prevent loss
+
+## Installation Steps
+
+### 1. Install Ollama
+```bash
+# Install Ollama
+brew install ollama
+
+# Start Ollama service
+ollama serve
+
+# Pull the lightweight model (in another terminal)
+ollama pull llama3.2:3b
+
+# Optional: Pull an even smaller model if needed
+ollama pull phi3.5:3.8b
+```
+
+### 2. Python Environment Setup
+```bash
+# Create virtual environment
+python3 -m venv scientific_pipeline
+source scientific_pipeline/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip
+```
+
+### 3. Install Requirements
+```bash
+# Core requirements - install in this order for optimal performance
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Scientific computing
+pip install numpy==1.24.3
+pip install pandas==2.0.3
+pip install scipy==1.11.1
+
+# NLP and ML
+pip install sentence-transformers==2.2.2
+pip install umap-learn==0.5.4
+pip install hdbscan==0.8.33
+pip install scikit-learn==1.3.0
+
+# API and web scraping
+pip install requests==2.31.0
+pip install aiohttp==3.8.5
+pip install beautifulsoup4==4.12.2
+pip install feedparser==6.0.10
+pip install arxiv==1.4.8
+pip install scholarly==1.7.11
+
+# Ollama client
+pip install ollama==0.1.7
+
+# Visualization
+pip install matplotlib==3.7.2
+pip install seaborn==0.12.2
+pip install wordcloud==1.9.2
+
+# Utilities
+pip install python-dateutil==2.8.2
+pip install tqdm==4.66.1
+```
+
+## Expected Output Structure
+
+```
+your_output_directory/
+├── results.json          # Complete analysis results
+├── papers.pkl            # Serialized paper objects
+├── clusters.png          # Cluster visualization
+└── analysis_log.txt      # Processing logs
+```
+
+### Results.json Structure
+```json
+{
+  "query": "physics inspired machine learning",
+  "collection_date": "2025-07-19T...",
+  "trends": {
+    "total_papers": 35,
+    "papers_with_questions": 32,
+    "common_question_themes": ["neural", "quantum", "optimization"],
+    "common_methods": ["deep learning", "variational", "monte carlo"]
+  },
+  "cluster_summaries": {
+    "Cluster_0": {
+      "size": 8,
+      "top_questions": ["How can quantum..."],
+      "top_methods": ["variational quantum"],
+      "sample_titles": ["Quantum Neural Networks..."]
+    }
+  },
+  "papers": [...]
+}
+```
