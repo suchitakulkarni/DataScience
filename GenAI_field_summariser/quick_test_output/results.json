@@ -1,0 +1,136 @@
+{
+  "query": "physics inspired machine learning",
+  "collection_date": "2025-08-20T19:20:57.530053",
+  "trends": {
+    "total_papers": 4,
+    "papers_with_questions": 4,
+    "papers_with_methods": 4,
+    "common_question_themes": [
+      "learning",
+      "nvs",
+      "real",
+      "object",
+      "quantum",
+      "rates",
+      "max",
+      "data",
+      "consumption",
+      "circuit"
+    ],
+    "common_methods": [
+      "used",
+      "based",
+      "learning",
+      "paper",
+      "research",
+      "approaches",
+      "entropy",
+      "list",
+      "main",
+      "methods"
+    ],
+    "unique_questions": 12,
+    "unique_methods": 17
+  },
+  "cluster_summaries": {},
+  "papers": [
+    {
+      "title": "Train Once, Deploy Anywhere: Realize Data-Efficient Dynamic Object Manipulation",
+      "authors": [
+        "Zhuoling Li",
+        "Xiaoyang Wu",
+        "Zhenhua Xu",
+        "Hengshuang Zhao"
+      ],
+      "date": "2025-08-19T17:59:59",
+      "venue": "arXiv",
+      "url": "http://arxiv.org/abs/2508.14042v1",
+      "central_questions": [
+        "Can strong generalization in dynamic object manipulation be achieved with only a few demonstrations?",
+        "Is it possible to develop a system that can generalize across diverse environment backgrounds, robot embodiments, motion dynamics, and object geometries?",
+        "Can an imitation learning policy achieve high success rates in real-world tasks without requiring extensive demonstration data?"
+      ],
+      "methods": [
+        "Here is the list of main research methods and approaches used in the paper:",
+        "Imitation learning: The study employs imitation learning as a promising paradigm for generalizable dynamic object manipulation.",
+        "Entropy-based theoretical framework: A novel theoretical framework is developed to quantify the optimization of imitation learning, focusing on entropy-based measures.",
+        "Generalizable Entropy-based Manipulation (GEM) system: A proposed system that leverages the entropy-based framework to achieve strong generalization in dynamic object manipulation.",
+        "Simulation and real-world experimentation: The study conducts extensive experiments in simulated environments and a real-world canteen setting to evaluate the performance of GEM."
+      ],
+      "cluster": -1
+    },
+    {
+      "title": "LongSplat: Robust Unposed 3D Gaussian Splatting for Casual Long Videos",
+      "authors": [
+        "Chin-Yang Lin",
+        "Cheng Sun",
+        "Fu-En Yang",
+        "Min-Hung Chen",
+        "Yen-Yu Lin",
+        "Yu-Lun Liu"
+      ],
+      "date": "2025-08-19T17:59:56",
+      "venue": "arXiv",
+      "url": "http://arxiv.org/abs/2508.14041v1",
+      "central_questions": [
+        "What are the key challenges in novel view synthesis (NVS) from casually captured long videos?",
+        "How can NVS methods effectively handle irregular camera motion, unknown camera poses, and expansive scenes?",
+        "Can robust unposed 3D Gaussian splatting frameworks improve rendering quality, pose accuracy, and computational efficiency for NVS?"
+      ],
+      "methods": [
+        "Here is the list of main research methods and approaches used in the paper:",
+        "Incremental Joint Optimization: a method for concurrently optimizing camera poses and 3D Gaussians to avoid local minima and ensure global consistency.",
+        "Robust Pose Estimation Module: a technique leveraging learned 3D priors for accurate pose estimation.",
+        "Octree Anchor Formation mechanism: an approach converting dense point clouds into anchors based on spatial density, improving computational efficiency.",
+        "Gaussian Splatting: a method for generating 3D scenes from sparse point clouds, used in this paper to address challenges in novel view synthesis."
+      ],
+      "cluster": -1
+    },
+    {
+      "title": "On the role of overparametrization in Quantum Approximate Optimization",
+      "authors": [
+        "Rabinovich, Daniil",
+        "Kardashin, Andrey",
+        "Adhikary, Soumik"
+      ],
+      "date": "2025-08-13T00:00:00",
+      "venue": "INSPIRE-HEP",
+      "url": "",
+      "central_questions": [
+        "Is circuit overparametrization necessary for solving combinatorial optimization problems using the Quantum Approximate Optimization Algorithm (QAOA)?",
+        "Is circuit overparametrization sufficient to achieve exact solutions for certain types of problems, such as MAX-CUT?",
+        "Can underparametrized circuits be used to solve instances of MAX-2-SAT, and what are the implications for noisy quantum devices?"
+      ],
+      "methods": [
+        "Here is the list of main research methods and approaches used in the paper:",
+        "Variational quantum algorithms",
+        "Quantum approximate optimization algorithm (QAOA)",
+        "Circuit overparametrization",
+        "Classical machine learning concepts"
+      ],
+      "cluster": -1
+    },
+    {
+      "title": "Real-Time Analysis of Unstructured Data with Machine Learning on Heterogeneous Architectures",
+      "authors": [
+        "Giasemis, Fotis I."
+      ],
+      "date": "2025-08-10T00:00:00",
+      "venue": "INSPIRE-HEP",
+      "url": "",
+      "central_questions": [
+        "Can machine learning models be efficiently deployed to process high-frequency data rates in real-time, while minimizing energy consumption?",
+        "How can graph neural network-based pipelines be optimized for performance and power consumption in heterogeneous architectures such as GPUs and FPGAs?",
+        "What is the effectiveness of using machine learning models for charged particle track reconstruction at the LHCb experiment, compared to classical tracking algorithms?"
+      ],
+      "methods": [
+        "Here is the list of main research methods and approaches used in the paper:",
+        "Machine learning (specifically graph neural networks) for real-time data analysis",
+        "Implementation of a pipeline inside LHCb's first-level trigger entirely on GPUs",
+        "Comparison with classical tracking algorithms currently in production at LHCb",
+        "Acceleration of the pipeline on FPGA architecture for power consumption and processing speed evaluation"
+      ],
+      "cluster": -1
+    }
+  ]
+}
