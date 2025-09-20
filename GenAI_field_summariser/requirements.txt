@@ -1,6 +1,6 @@
 # Scientific Paper Analysis Pipeline - Setup Guide
 
-This project is currently work under progress. The large monolith code needs to be refactored. The code has been tested for quick analysis option. 
+This project is currently work under progress. The large monolith code needs to be refactored. The code has been tested for quick analysis option.
 
 ## Hardware Optimization for 16GB MacBook Pro 2020
 
