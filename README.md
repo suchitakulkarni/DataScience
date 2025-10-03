@@ -57,7 +57,7 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 ---
 
 ### 7. [T_Swift_Finale](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_Finale) [T_Swift_week_2](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift_week_2), [T_swift](https://github.com/suchitakulkarni/DataScience/tree/main/T_Swift)
-**Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
+- **Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
 - **Skills**: EDA, feature visualization, audio metadata analysis  
 - **Outcome**: Developed insights into popularity trends, sentiment, and musical evolution.
 ---
