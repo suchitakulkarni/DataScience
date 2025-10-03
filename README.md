@@ -30,7 +30,7 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 * **Skills:** Physics-informed machine learning, regression, simulation.
 
 ---
-* ### 3. [GenAI_field_summarizer (ongoing)](https://github.com/suchitakulkarni/DataScience/tree/main/GenAI_field_summariser)
+### 3. [GenAI_field_summarizer (ongoing)](https://github.com/suchitakulkarni/DataScience/tree/main/GenAI_field_summariser)
 
 * **Goal:** Use generative AI to autonomously summarize research papers and articles (agentic AI style).
 * **Methods:** Generative AI model for text summarization, text preprocessing
