@@ -21,7 +21,9 @@ This project predicts the Remaining Useful Life (RUL) of turbofan engines using 
 ## How to Run
 1. Clone repo  
 2. Create environment: `pip install -r requirements.txt`  
-3. Run `notebooks/eda_and_modeling.ipynb` for detailed analysis and model training.
+3. Run `notebooks/RUL_timeseries_XGBoost.ipynb` for detailed analysis and model training. You can run this via google colab.
+4. There is also a modular framework, if you have enough computing power. Run python main.py to run locally without notebook interface
+5. Finally there is a streamlit interface run streamlit run app.py
 
 ## Future Work
 - Incorporate deep learning models (LSTM/GRU) for sequence modeling.
