@@ -16,34 +16,34 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 
 ## Project List
 
-### 1. NASA_RUL_predictions
+### 1. [NASA_RUL_predictions](https://github.com/suchitakulkarni/DataScience/tree/main/NASA_RUL_predictions)
 
 * **Goal:** Predict Remaining Useful Life (RUL) of jet engines using time-series sensor data.
 * **Methods:** Regression, time-series modeling.
 * **Skills:** Pandas, Scikit-Learn, XGBoost, visualization, model evaluation.
 ---
 
-### 2. Physics_informed_latency_prediction
+### 2. [Physics_informed_latency_prediction](https://github.com/suchitakulkarni/DataScience/tree/main/Physics_Informed_Latency_Prediction)
 
 * **Goal:** Predict system latency combining physical modeling with ML.
 * **Methods:** Physics-informed regression, hybrid ML models.
 * **Skills:** Physics-informed machine learning, regression, simulation.
 
 ---
-* ### 3. GenAI_field_summarizer (ongoing)
+* ### 3. [GenAI_field_summarizer (ongoing)](https://github.com/suchitakulkarni/DataScience/tree/main/GenAI_field_summariser)
 
 * **Goal:** Use generative AI to autonomously summarize research papers and articles (agentic AI style).
 * **Methods:** Generative AI model for text summarization, text preprocessing
 * **Skills:** NLP, text summarization.
 
 ---
-### 4. Hamiltonian_formalism_orbital_dynamics
+### 4. [Hamiltonian_formalism_orbital_dynamics](https://github.com/suchitakulkarni/DataScience/tree/main/Hamiltonian_formalism_orbital_dynamics)
 
 * **Goal:** Explore orbital dynamics using Hamiltonian mechanics.
 * **Methods:** Lagrangian and Hamiltonian modeling, numerical simulation (Runge-Kutta integration).
 * **Skills:** Physics, mathematical modeling, simulation.
 ---
-### 5. PCOS_Kaggle
+### 5. [PCOS_Kaggle](https://github.com/suchitakulkarni/DataScience/tree/main/PCOS_Kaggle)
 
 * **Goal:** Predict the presence of Polycystic Ovary Syndrome (PCOS) using clinical data.
 * **Methods:** Classification models, EDA, random forrests 
@@ -60,8 +60,8 @@ Welcome! This repository showcases my hands-on experience in data science, machi
 **Goal**: Exploratory data analysis of Taylor Swift’s discography and streaming patterns.  
 - **Skills**: EDA, feature visualization, audio metadata analysis  
 - **Outcome**: Developed insights into popularity trends, sentiment, and musical evolution.
-
-### 8. DS_Roadmap_exercises
+---
+### 8. [DS_Roadmap_exercises](https://github.com/suchitakulkarni/DataScience/tree/main/DS_roadmap_exercises)
 
 * **Goal:** Reinforce key concepts in data science through exercises.
 * **Skills:** Data wrangling, visualization, machine learning basics.
