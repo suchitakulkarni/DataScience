@@ -5,10 +5,10 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Paths
-DATA_PATH = '/Users/suchitakulkarni/Dropbox/private/job_applications/industry/T_Swift_meetup_modular/data/'
-SPOTIFY_CSV = '/Users/suchitakulkarni/Dropbox/private/job_applications/industry/T_Swift_meetup_modular/data/taylor_swift_spotify.csv'
-ALBUM_SONG_CSV = '/Users/suchitakulkarni/Dropbox/private/job_applications/industry/T_Swift_meetup_modular/data/song_names_formatted.csv'
-RESULTS_DIR = '/Users/suchitakulkarni/Dropbox/private/job_applications/industry/T_Swift_meetup_modular/results/'
+DATA_PATH = os.path.join(os.getcwd(),"data")
+SPOTIFY_CSV = os.path.join(os.getcwd(),"data/taylor_swift_spotify.csv")
+ALBUM_SONG_CSV = os.path.join(os.getcwd(),"data/song_names_formatted.csv")
+RESULTS_DIR = os.path.join(os.getcwd(),"data/results")
 
 # Ensure results directory exists
 os.makedirs(RESULTS_DIR, exist_ok=True)
