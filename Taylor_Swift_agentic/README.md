@@ -29,8 +29,6 @@ Taylor_Swift_agentic/
 │
 ├── setup_agents.sh              # Shell script for environment/agent initialization
 │
-├── streamlit_chat.py            # Streamlit-based UI for interaction
-│
 ├── src/                         # Core source code package
 │   ├── __init__.py
 │   ├── berttopic.py             # BERTopic model integration
@@ -48,7 +46,6 @@ Taylor_Swift_agentic/
 │   ├── utils.py                 # General utility functions
 │   └── visualization.py         # Plotting and visualization routines
 │
-├── __pycache__/                 # Compiled Python cache files
 └── src/agents/                  # (Planned) Modular LLM agents or reasoning tools
 
 ```
