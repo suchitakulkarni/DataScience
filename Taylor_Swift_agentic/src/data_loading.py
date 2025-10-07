@@ -1,5 +1,8 @@
 from src import *
+from src import config
 from src.preprocessing import clean_lyrics, normalize_name, remove_TV, remove_feat
+
+SAFE_MODE = getattr(config, 'SAFE_MODE', False)
 
 def load_and_merge_data(datapath, spotify_csv, album_song_csv):
     album_song_df = pd.read_csv(album_song_csv, engine="python", quotechar='"')
@@ -38,6 +41,13 @@ def load_and_merge_data(datapath, spotify_csv, album_song_csv):
             lyrics_list.append("")
 
     album_song_df['lyrics'] = lyrics_list
+
+    # SAFE MODE: Replace lyrics with placeholder for public demos
+    if SAFE_MODE:
+        print("⚠️  SAFE MODE: Lyrics replaced with feature-only placeholders")
+        album_song_df['lyrics_available'] = album_song_df['lyrics'].apply(lambda x: len(x) > 0)
+        album_song_df['lyrics'] = '[LYRICS REMOVED FOR DEMO]'
+        # You can still process features from cached embeddings
 
     # Apply normalization
     spotify_df['song_clean'] = spotify_df['name'].apply(remove_feat).apply(remove_TV).apply(normalize_name)

@@ -12,7 +12,7 @@ def create_hybrid_similarity_system(merged_df, use_cache=True):
 
     df = merged_df[merged_df['lyrics'] != ''].copy().reset_index(drop=True)
 
-    cache_file = f'{config.RESULTS_DIR}/lyric_embeddings.pkl'
+    '''cache_file = f'{config.RESULTS_DIR}/lyric_embeddings.pkl'
 
     # Try to load cached embeddings
     if use_cache and os.path.exists(cache_file):
@@ -20,6 +20,26 @@ def create_hybrid_similarity_system(merged_df, use_cache=True):
         with open(cache_file, 'rb') as f:
             lyric_embeddings = pickle.load(f)
         print("✓ Loaded from cache")
+    else:
+        print("Creating lyric embeddings (this may take 2-3 minutes)...")
+        model = SentenceTransformer("all-MiniLM-L6-v2")
+        lyric_embeddings = model.encode(df['lyrics'].tolist(), show_progress_bar=True)'''
+
+    cache_file = f'{config.RESULTS_DIR}/lyric_embeddings.pkl'
+
+    # SAFE MODE: Only use cached embeddings
+    if getattr(config, 'SAFE_MODE', False) and not os.path.exists(cache_file):
+        raise FileNotFoundError(
+            "SAFE MODE: Cannot create new embeddings. "
+            "Run with SAFE_MODE=False first to generate cached embeddings."
+        )
+
+    # Try to load cached embeddings
+    if use_cache and os.path.exists(cache_file):
+        print("Loading cached embeddings...")
+        with open(cache_file, 'rb') as f:
+            lyric_embeddings = pickle.load(f)
+        print("✓ Loaded from cache (no lyrics processed)")
     else:
         print("Creating lyric embeddings (this may take 2-3 minutes)...")
         model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -70,11 +90,14 @@ def create_hybrid_similarity_system(merged_df, use_cache=True):
         audio_similarity = None
     
     # Save similarity matrices
-    np.save('results/lyric_similarity.npy', lyric_similarity)
+    # np.save('results/lyric_similarity.npy', lyric_similarity)
+    np.save(os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results", "lyric_similarity.npy"), lyric_similarity)
     if audio_similarity is not None:
-        np.save('results/audio_similarity.npy', audio_similarity)
-        np.save('results/hybrid_similarity.npy', hybrid_similarity)
-    
+        #np.save('results/audio_similarity.npy', audio_similarity)
+        #np.save('results/hybrid_similarity.npy', hybrid_similarity)
+        np.save(os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results", "audio_similarity.npy"), audio_similarity)
+        np.save(os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results", "hybrid_similarity.npy"), hybrid_similarity)
+
     return {
         'df': df,
         'lyric_similarity': lyric_similarity,
@@ -170,7 +193,7 @@ def visualize_similarity_comparison(similarity_results, song_idx=0):
     axes[1].invert_yaxis()
     
     plt.tight_layout()
-    plt.savefig('results/similarity_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results", "similarity_comparison.png"), dpi=300, bbox_inches='tight')
     plt.close()
     
     print(f"\nSaved: results/similarity_comparison.png")

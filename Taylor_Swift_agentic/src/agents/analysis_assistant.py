@@ -36,19 +36,16 @@ class AnalysisAssistant:
         return context
 
     def _build_system_prompt(self):
-        """Build system prompt with analysis context - OPTIMIZED."""
-        #prompt = """You are an expert in analyzing Taylor Swift's discography.
-        #Answer questions concisely using only the provided data.\n\n"""
+        """Build system prompt with analysis context - NO LYRICS."""
         prompt = """You are an analytical assistant for Taylor Swift's music data.
-
         Your task: 
         Answer questions *only* using the tabular data provided below. 
         If the data does not contain the answer, reply exactly with: 
-        "I don’t have enough data to answer that."
-
-        You must not use external knowledge, speculation, or general information about Taylor Swift.
-        Use concise analytical language, citing specific features or metrics from the data.
-
+        "I don't have enough data to answer that."
+    
+        You must not use external knowledge or speculation.
+        Use concise analytical language, citing specific features or metrics.
+    
         Data provided:\n\n
         """
 
@@ -56,27 +53,29 @@ class AnalysisAssistant:
         if self.context['personal_alignment'] is not None:
             prompt += "PERSONAL ALIGNMENT (Top 5 features):\n"
             df = self.context['personal_alignment'][
-                ['feature', 'closer_to', 'alignment_score']].head(5)  # Reduced columns
+                ['feature', 'closer_to', 'alignment_score']].head(5)
             prompt += df.to_string(index=False) + "\n\n"
 
         # Reputation distinctive features - TOP 3 only
         if self.context['reputation_diff'] is not None:
             prompt += "REPUTATION DISTINCTIVE FEATURES (Top 3):\n"
-            df = self.context['reputation_diff'][['feature', 'difference']].head(3)  # Reduced
+            df = self.context['reputation_diff'][['feature', 'difference']].head(3)
             prompt += df.to_string(index=False) + "\n\n"
 
+        # Songs with topics - METADATA ONLY, NO LYRICS
         if self.context['songs_with_topics'] is not None:
-            prompt += "SONG LYRICAL AND ACOUSTIC (Top 3):\n"
-            df = self.context['songs_with_topics']
-            prompt += df.to_string(index=False) + "\n\n"
+            prompt += "SONG METADATA SAMPLE (Top 10):\n"
+            # Select only safe columns
+            safe_cols = ['Song_Name', 'Album', 'era', 'dominant_topic',
+                         'danceability', 'energy', 'valence', 'polarity']
+            available_cols = [col for col in safe_cols if col in self.context['songs_with_topics'].columns]
 
+            if available_cols:
+                df = self.context['songs_with_topics'][available_cols].head(10)
+                prompt += df.to_string(index=False) + "\n\n"
 
+        prompt += "\nIMPORTANT: Base all responses on these metrics and features only. Never reference or quote song lyrics."
 
-        # Remove songs sample entirely - it's not being used effectively
-        # The agent doesn't need example songs in the system prompt
-
-        prompt += "\nEra definitions: Country (2006-2008), Fearless (2008-2010), Speak Now (2010-2012), Red (2012-2014), 1989 (2014-2016), Reputation (2017-2018), Lover (2019), Folklore/Evermore (2020-2021), Midnights (2022+)"
-        print(f"System prompt size: {len(prompt)} chars")  # CHECK THIS
         return prompt
 
     def ask(self, question: str) -> str:

@@ -1,5 +1,4 @@
 """Agentic recommendation system with explainability - Ollama version."""
-"""Agentic recommendation system with explainability - Ollama version."""
 import numpy as np
 import pandas as pd
 from typing import Dict
@@ -33,32 +32,43 @@ class RecommendationAgent:
         hybrid_sim = self.similarity_results['hybrid_similarity']
         similar_indices = np.argsort(hybrid_sim[song_idx])[-n_recommendations-1:-1][::-1]
         recommendations = self.df.iloc[similar_indices]
-        
+
         # Build context for LLM
-        context = f"""You are a music recommendation expert. Analyze why these songs are similar.
-            USER'S SONG:
-            - Title: {song_data['Song_Name']}
-            - Album: {song_data['Album']}
-            - Era: {song_data.get('era', 'Unknown')}
-            - Audio: Danceability={song_data.get('danceability', 0):.2f}, Energy={song_data.get('energy', 0):.2f}, Valence={song_data.get('valence', 0):.2f}
-            - Topic: {song_data.get('dominant_topic', 'Unknown')} (strength: {song_data.get('topic_strength', 0):.2f})
-            
-            TOP {n_recommendations} SIMILAR SONGS (by hybrid similarity):
-            
-            """
+        context = f"""You are a music recommendation expert. 
+        Analyze why these songs are similar based on their musical and thematic features.
+
+        USER'S SONG:
+        - Title: {song_data['Song_Name']}
+        - Album: {song_data['Album']}
+        - Era: {song_data.get('era', 'Unknown')}
+        - Musical Profile:
+          * Danceability: {song_data.get('danceability', 0):.2f}
+          * Energy: {song_data.get('energy', 0):.2f}
+          * Valence (mood): {song_data.get('valence', 0):.2f}
+          * Acousticness: {song_data.get('acousticness', 0):.2f}
+          * Tempo: {song_data.get('tempo', 0):.1f} BPM
+        - Lyrical Theme: {song_data.get('dominant_topic', 'Unknown')} (confidence: {song_data.get('topic_strength', 0):.2f})
+        - Sentiment: Polarity={song_data.get('polarity', 0):.2f}, Subjectivity={song_data.get('subjectivity', 0):.2f}
+
+        TOP {n_recommendations} SIMILAR SONGS (ranked by hybrid similarity):
+
+        """
         for idx, (_, rec) in enumerate(recommendations.iterrows(), 1):
-            sim_score = hybrid_sim[song_idx, similar_indices[idx-1]]
+            sim_score = hybrid_sim[song_idx, similar_indices[idx - 1]]
             context += f"{idx}. {rec['Song_Name']} ({rec['Album']}) - Similarity: {sim_score:.3f}\n"
-            context += f"   Audio: Dance={rec.get('danceability', 0):.2f}, Energy={rec.get('energy', 0):.2f}, Valence={rec.get('valence', 0):.2f}\n"
-            context += f"   Topic: {rec.get('dominant_topic', 'Unknown')}\n\n"
-            context += """
-            Provide:
-            1. Why these songs are similar (2-3 sentences)
-            2. 2-3 key patterns connecting them (musical or lyrical)
-            3. Which recommendation to try first and why (1-2 sentences)
-            
-            Keep it concise and insightful.
-            """
+            context += f"   Era: {rec.get('era', 'Unknown')}\n"
+            context += f"   Musical: Dance={rec.get('danceability', 0):.2f}, Energy={rec.get('energy', 0):.2f}, Valence={rec.get('valence', 0):.2f}\n"
+            context += f"   Lyrical Theme: {rec.get('dominant_topic', 'Unknown')}\n"
+            context += f"   Sentiment: Polarity={rec.get('polarity', 0):.2f}\n\n"
+
+        context += """
+        Provide:
+        1. Why these songs are similar based on their musical and thematic features (2-3 sentences)
+        2. 2-3 key patterns connecting them (sonic qualities, themes, or era characteristics)
+        3. Which recommendation to try first and why (1-2 sentences)
+
+        Base your analysis solely on the quantitative features and thematic categories provided.
+        """
         
         print("  Generating explanation...")
 

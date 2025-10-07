@@ -26,7 +26,7 @@ def main():
     # 1. Load data
     if not os.path.exists(f"{config.RESULTS_DIR}/merged_records.csv"):
         merged_df = load_and_merge_data(
-            config.DATA_PATH,
+            config.DATA_DIR,
             config.SPOTIFY_CSV,
             config.ALBUM_SONG_CSV
         )
@@ -98,7 +98,7 @@ def main():
     print("\n" + "="*80)
     print("AGENTIC ANALYSIS OPTIONS (Ollama)")
     print("="*80)
-    print(f"\nUsing model: {config.OLLAMA_MODEL}")
+    print(f"\nUsing model: {config.MODEL}")
     print("\nAvailable agentic features:")
     print("  1. Conversational Analysis Assistant")
     print("  2. Agentic Recommendation System")

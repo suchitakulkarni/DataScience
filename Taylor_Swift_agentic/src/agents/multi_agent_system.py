@@ -24,21 +24,30 @@ class LyricalAnalystAgent(AnalystAgent):
     
     def __init__(self, model: str = config.MODEL):
         super().__init__("Lyrical Analyst", model)
-    
+
     def analyze(self, song_data: Dict) -> str:
-        lyrics_excerpt = song_data.get('lyrics', '')[:500]
-        
-        prompt = f"""You are a lyrical analyst specializing in songwriting.
-            Song: {song_data['Song_Name']}
-            Lyrics (excerpt): {lyrics_excerpt}...
-            
-            Analyze (2-3 sentences per point):
-            1. Main themes and emotions
-            2. Writing style and notable literary devices
-            3. How it compares to typical Taylor Swift lyrics
-            
-            Be specific and insightful.
-            """
+        # Analyze based on computed features, NOT raw lyrics
+        prompt = f"""You are a lyrical analyst specializing in songwriting patterns.
+
+        Song: {song_data['Song_Name']}
+        Album: {song_data['Album']}
+        Era: {song_data.get('era', 'Unknown')}
+    
+        LYRICAL METRICS:
+        - Average word length: {song_data.get('avg_word_length', 0):.2f}
+        - Vocabulary diversity (unique word ratio): {song_data.get('unique_word_ratio', 0):.2f}
+        - Total words: {song_data.get('total_words', 0)}
+        - Sentiment polarity: {song_data.get('polarity', 0):.2f} (-1=negative, +1=positive)
+        - Subjectivity: {song_data.get('subjectivity', 0):.2f} (0=objective, 1=subjective)
+        - Dominant lyrical theme: {song_data.get('dominant_topic', 'Unknown')}
+    
+        Analyze (2-3 sentences per point):
+        1. What these metrics suggest about the song's emotional tone and writing style
+        2. How the vocabulary complexity and sentiment patterns compare to typical Taylor Swift songs
+        3. What the thematic classification reveals about the song's subject matter
+    
+        Base your analysis strictly on these quantitative metrics.
+        """
         
         if config.USE_OPENAI == False:
             return self.client.generate(prompt, max_tokens=400)
@@ -51,32 +60,24 @@ class MusicalAnalystAgent(AnalystAgent):
     
     def __init__(self, model: str = config.MODEL):
         super().__init__("Musical Analyst", model)
-    
-    def analyze(self, song_data: Dict) -> str:
-        #prompt = f"""You are a musical analyst specializing in audio production.
-        #    Song: {song_data['Song_Name']}
-        #    Audio Features:
-        #    - Danceability: {song_data.get('danceability', 'N/A')}
-        #    - Energy: {song_data.get('energy', 'N/A')}
-        #    - Valence (happiness): {song_data.get('valence', 'N/A')}
-        #    - Tempo: {song_data.get('tempo', 'N/A')} BPM
-        #    - Acousticness: {song_data.get('acousticness', 'N/A')}
-            
-        #    Analyze (2-3 sentences per point):
-        #    1. Musical mood and energy
-        #    2. Production style characteristics
-        #    3. How it fits Taylor Swift's sonic palette
-        #
-        #    Be specific about the audio features.
-        #    """
-        prompt = f"""{song_data['Song_Name']}
-        D:{song_data.get('danceability', '?')} 
-        E:{song_data.get('energy', '?')} 
-        V:{song_data.get('valence', '?')} 
-        T:{song_data.get('tempo', '?')} 
-        A:{song_data.get('acousticness', '?')}
 
-        Analyze: mood/energy, production style, fit in Taylor's discography. Max 50 words."""
+
+    def analyze(self, song_data: Dict) -> str:
+        prompt = f"""You are a musical analyst specializing in audio production.
+
+        Song: {song_data['Song_Name']}
+        Album: {song_data['Album']}
+    
+        AUDIO FEATURES:
+        - Danceability: {song_data.get('danceability', 'N/A'):.2f} (0=not danceable, 1=very danceable)
+        - Energy: {song_data.get('energy', 'N/A'):.2f} (0=calm, 1=energetic)
+        - Valence: {song_data.get('valence', 'N/A'):.2f} (0=sad, 1=happy)
+        - Tempo: {song_data.get('tempo', 'N/A'):.0f} BPM
+        - Acousticness: {song_data.get('acousticness', 'N/A'):.2f} (0=electronic, 1=acoustic)
+        - Loudness: {song_data.get('loudness', 'N/A'):.1f} dB
+    
+        Analyze: musical mood/energy, production style, how it fits Taylor's sonic evolution. Max 4 sentences.
+        """
         
         #return self.client.generate(prompt, max_tokens=400)
         if config.USE_OPENAI == False:

@@ -51,6 +51,10 @@ def preprocess_lyrics_enhanced(text):
     if pd.isna(text) or not text:
         return ""
 
+    # SAFE MODE: Return empty string to prevent processing
+    if getattr(config, 'SAFE_MODE', False):
+        return "[PROCESSED]"  # Placeholder for cached embeddings
+
     # Lowercase
     text = text.lower()
 

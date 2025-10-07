@@ -1,6 +1,7 @@
 from src import *
-def visualize_embeddings(embeddings, labels, method="umap", filename="results/embedding_projection.png"):
+def visualize_embeddings(embeddings, labels, method="umap", filename=None):
     """Project embeddings to 2D with t-SNE or UMAP and color by era/album."""
+    if filename == None: filename = os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results","embedding_projection.png")
     print("\n" + "=" * 80)
     print("VISUALIZE EMBEDDINGS")
     print("=" * 80)
@@ -19,8 +20,9 @@ def visualize_embeddings(embeddings, labels, method="umap", filename="results/em
     print(f"Saved: {filename}")
 
 
-def visualize_topics_comprehensive(df, lda_model, bert_model, lda_labels, bert_labels, X_counts):
+def visualize_topics_comprehensive(df, lda_model, bert_model, lda_labels, bert_labels, X_counts, filename = None):
     """Create comprehensive topic visualizations."""
+    if filename == None: filename = os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results","topic_analysis_comprehensive.png")
     print("\n" + "=" * 80)
     print("TOPIC VISUALIZATION")
     print("=" * 80)
@@ -110,7 +112,8 @@ def visualize_topics_comprehensive(df, lda_model, bert_model, lda_labels, bert_l
              fontsize=9, verticalalignment='top', fontfamily='monospace')
 
     plt.tight_layout()
-    plt.savefig('results/topic_analysis_comprehensive.png', dpi=300, bbox_inches='tight')
+
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
 
     print("Saved: results/topic_analysis_comprehensive.png")
@@ -136,9 +139,9 @@ def visualize_topics_comprehensive(df, lda_model, bert_model, lda_labels, bert_l
     return summary_df
 
 
-def visualize_era_evolution(df):
+def visualize_era_evolution(df, filename = None):
     """Create comprehensive era evolution visualizations."""
-    
+    if filename is None: filename = os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results","era_evolution.png")
     # Filter out eras with too few songs
     era_counts = df['era'].value_counts()
     valid_eras = era_counts[era_counts >= 3].index  # At least 3 songs per era
@@ -231,14 +234,16 @@ def visualize_era_evolution(df):
                        ha='center', va='center', transform=axes[2, 2].transAxes)
     
     plt.tight_layout()
-    plt.savefig('results/era_evolution.png', dpi=300, bbox_inches='tight')
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     
     print("\nSaved: results/era_evolution.png")
 
 
-def create_era_audio_profile(df):
+def create_era_audio_profile(df, filename = None):
     """Create audio feature profiles for each era."""
+    if filename is None: filename = os.path.join(config.DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results",
+                                                 "era_audio_profile.png")
     audio_features = ['danceability', 'energy', 'valence', 'acousticness', 'tempo']
     available_audio = [f for f in audio_features if f in df.columns]
 
@@ -289,7 +294,7 @@ def create_era_audio_profile(df):
     ax.grid(True)
 
     plt.tight_layout()
-    plt.savefig('results/era_audio_profile.png', dpi=300, bbox_inches='tight')
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
 
     print("Saved: results/era_audio_profile.png")

@@ -1,24 +1,40 @@
 """Configuration and constants for Taylor Swift analysis."""
-import os
+import os, sys
 import spacy
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# Paths
-DATA_PATH = os.path.join(os.getcwd(),"data")
-SPOTIFY_CSV = os.path.join(os.getcwd(),"data/taylor_swift_spotify.csv")
-ALBUM_SONG_CSV = os.path.join(os.getcwd(),"data/song_names_formatted.csv")
-RESULTS_DIR = os.path.join(os.getcwd(),"data/results")
+# Safe mode for public presentations (removes lyrics from OpenAI calls)
+SAFE_MODE = False  # Set to True when presenting publicly
 
+# Maximum lyrics characters to process (if absolutely needed)
+MAX_LYRICS_CHARS = 0 if SAFE_MODE else None
+
+# Flag to use cached embeddings only (never reprocess lyrics)
+USE_CACHED_EMBEDDINGS_ONLY = SAFE_MODE
+
+DATA_SCIENCE_DATA = os.environ.get("DATA_SCIENCE_DATA")
+if DATA_SCIENCE_DATA is None:
+    raise ValueError("Environment variable DATA_PATH is not set")
+
+RESULTS_DIR = os.path.join(DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "results")
 # Ensure results directory exists
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
+# Define file paths relative to DATA_PATH
+SPOTIFY_CSV = os.path.join(DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "data", "taylor_swift_spotify.csv")
+ALBUM_SONG_CSV = os.path.join(DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "data", "song_names_formatted.csv")
+DATA_DIR = os.path.join(DATA_SCIENCE_DATA, "Taylor_Swift_agentic", "data")
+
+if not os.path.exists(SPOTIFY_CSV): print('no spotify data found'); sys.exit(0)
+if not os.path.exists(ALBUM_SONG_CSV): print('no Album data found'); sys.exit(0)
+if not os.path.exists(RESULTS_DIR): print('no result directory found'); sys.exit(0)
+if not os.path.exists(DATA_DIR): print('no data directory found'); sys.exit(0)
+
+
+
 """Configuration file for Taylor Swift analysis project."""
 import os
-
-# Directories
-RESULTS_DIR = "results"
-DATA_DIR = "data"
 
 # API Configuration
 USE_OPENAI = True  # Toggle: True for OpenAI (fast), False for Ollama (local)
