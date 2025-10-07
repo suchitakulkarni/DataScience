@@ -6,6 +6,8 @@ data/Cover_Art
 data/*.csv
 similarity_era_analysis_v2.py
 results/*.csv
+results*
+src/agents/analysis_assistant_v0.py
 
 # Python
 __pycache__/
