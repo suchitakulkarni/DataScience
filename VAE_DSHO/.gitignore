@@ -1,0 +1,7 @@
+trained_physics_model.pth
+__pycache__
+.DS_Store
+fixed_test_data.npy
+src/__pycache__
+utils/__pycache__
+
