@@ -1,0 +1,1 @@
+ffmpeg -framerate 5 -pattern_type glob -i 'results/reconstruction_progress_epoch_*.png' \\n-vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \\n-c:v libx264 -pix_fmt yuv420p recon_progress.mp4\n
