@@ -357,11 +357,13 @@ st.set_page_config(page_title="NASA engines RUL predictions", layout="wide")
 st.header("NASA engines RUL predictions")
 with st.expander("Dataset"):
     url = "https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data"
-    notebook_repo = ""
+    notebook_repo = "https://github.com/suchitakulkarni/DataScience/blob/main/NASA_RUL_predictions/notebooks/RUL_timeseries_XGBoost.ipynb"
+    code_repo = "https://github.com/suchitakulkarni/DataScience/tree/main/NASA_RUL_predictions"
     st.write("The data has been provided by NASA and is available [here](%s)" % url)
     st.write("This project uses only one of the four available datasets")
     st.write("Software stack: pandas, numpy, plotly, sklearn, XGBoost, Optuna")
     st.write("Final notebook available here: %s"%(notebook_repo))
+    st.write("Final code available here: %s"%(code_repo))
 st.subheader("Final RUL predictions and comparisons with true values")
 df_predictions_over_time = pd.read_csv('./final_results.txt')
 df_per_unit = pd.read_csv('./RUL_per_unit.txt')
